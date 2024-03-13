@@ -1,7 +1,5 @@
-// import { c, i } from 'vite/dist/node/types.d-AKzkD8vd';
+
 import css from './Options.module.css';
-// import { createLogger } from 'vite';
-// import { ssrImportMetaKey } from 'vite/runtime';
 export const Options = ({ onButtonClick, onResetClick, totalReviews }) => {
   return (
     <ul className={css.list}>
