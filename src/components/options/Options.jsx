@@ -1,4 +1,3 @@
-
 import css from './Options.module.css';
 export const Options = ({ onButtonClick, onResetClick, totalReviews }) => {
   return (
