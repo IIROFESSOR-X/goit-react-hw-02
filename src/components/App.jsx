@@ -18,16 +18,13 @@ export const App = () => {
         };
   });
 
-  
-  
   useEffect(() => {
     window.localStorage.setItem('saved-reviews', JSON.stringify(reviews));
   }, [reviews]);
-  
-  const totalFeedback = values.good + values.neutral + values.bad;
-  
-  const totalPositive = Math.round(((values.good + values.neutral) / totalFeedback) * 100);
-  
+
+  const totalReviews = reviews.good + reviews.neutral + reviews.bad;
+  const totalPositive = totalReviews > 0 ? Math.round(((reviews.good + reviews.neutral) / totalReviews) * 100) : 0;
+
   const onButtonClick = e => {
     const button = e.target.dataset.id;
     if (!button) return;
@@ -36,14 +33,7 @@ export const App = () => {
       [button]: reviews[button] + 1,
     });
   };
-  
- const handleReset = () => {
-    setValues({
-      good: 0,
-      neutral: 0,
-      bad: 0
-    });
-  };
+
   const onResetClick = () => {
     setReviews({ good: 0, neutral: 0, bad: 0 });
   };
@@ -59,7 +49,7 @@ export const App = () => {
       {totalReviews === 0 ? (
         <Notification />
       ) : (
-        <Feedback total={totalReviews} reviews={reviews} />
+        <Feedback total={totalReviews} reviews={reviews} positivePercentage={totalPositive} />
       )}
     </>
   );
